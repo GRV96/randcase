@@ -1,12 +1,34 @@
 public class RandCase {
 
+	private static String CONSOLE_HELP =
+		"Randomly changes the case of a string's letters. The change of each "
+		+ "letter occurs with the given probability.\n\nArguments:\n"
+		+ "1: a string\n"
+		+ "2: the probability that each letter in the string have its case"
+		+ " changed";
+
 	public static void main(String[] args) {
-		System.out.println(randSwitchCase("Anticonstitutionnellement", 0.7));
+		int argNum = args.length;
+		String consoleOutput = null;
+
+		switch (argNum) {
+			case 1:
+				consoleOutput = randSwitchCase(args[0]);
+				break;
+			case 2:
+				double probability = Double.parseDouble(args[1]);
+				consoleOutput = randSwitchCase(args[0], probability);
+				break;
+			default:
+				consoleOutput = CONSOLE_HELP;
+		}
+
+		System.out.println(consoleOutput);
 	}
 
 	/**
-	 * Randomly changes the case of a string's letters with a probability of
-	 * 0.5.
+	 * Randomly changes the case of a string's letters. The change of each
+	 * letter occurs with a probability of 0.5.
 	 * @param s a string
 	 * @return the result of the case change
 	 */
@@ -15,10 +37,10 @@ public class RandCase {
 	}
 
 	/**
-	 * Randomly changes the case of a string's letters with the given
-	 * probability.
+	 * Randomly changes the case of a string's letters. The change of each
+	 * letter occurs with the given probability.
 	 * @param s a string
-	 * @param prob the probability that any letter in s have its case changed
+	 * @param prob the probability that each letter in s have its case changed
 	 * @return the result of the case change
 	 */
 	public static String randSwitchCase(String s, double prob) {
