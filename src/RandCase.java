@@ -1,9 +1,42 @@
 public class RandCase {
 
 	public static void main(String[] args) {
-		System.out.println(switchCase('c'));
-		System.out.println(switchCase('C'));
-		System.out.println(switchCase('?'));
+		System.out.println(randSwitchCase("Anticonstitutionnellement", 0.7));
+	}
+
+	/**
+	 * Randomly changes the case of a string's letters with a probability of
+	 * 0.5.
+	 * @param s a string
+	 * @return the result of the case change
+	 */
+	public static String randSwitchCase(String s) {
+		return randSwitchCase(s, 0.5);
+	}
+
+	/**
+	 * Randomly changes the case of a string's letters with the given
+	 * probability.
+	 * @param s a string
+	 * @param prob the probability that any letter in s have its case changed
+	 * @return the result of the case change
+	 */
+	public static String randSwitchCase(String s, double prob) {
+		int strLength = s.length();
+		char[] randCaseText = new char[strLength];
+
+		for(int i=0; i<strLength; i++) {
+			char c = s.charAt(i);
+
+			if(Math.random() < prob) {
+				randCaseText[i] = switchCase(c);
+			}
+			else {
+				randCaseText[i] = c;
+			}
+		}
+
+		return new String(randCaseText);
 	}
 
 	/**
